@@ -39,16 +39,19 @@ export async function getGroqChatCompletion(prompt:string, model:string = langMo
   }
 //deal with argument stuff
 
-const languageTranslation = async(things : string, lang : string,  model:string = langModel, apiKey:string =groqAPIKEY, urlThing:string =gorg) =>{
+const languageTranslation = async(things : string[], model:string = langModel, apiKey:string =groqAPIKEY, urlThing:string =gorg) =>{
 //read the file of thing
 //shoot off error if not
 //alternative is a rubbery ducky but idk
 //other idea is for it to explain how the things are connected together
 
   try{
-    const foo = Bun.file(things);
-    const text = await foo.text();
-    const prompt:string = `Can you convert this code to ${lang} and also in a pirate language: ${text}`;
+    let prompt:string = "Can you explain how these files relate: ";
+    for (const f of things){
+      const foo = Bun.file(f);
+      const text = await foo.text();
+      prompt = prompt + `${f}: ${text}`;
+    }
     return await getGroqChatCompletion(prompt, model, apiKey, urlThing);
   }catch(err)
   {console.error(`Error: ${err}`);
@@ -74,40 +77,35 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
 }, async (argv) => {
   if(Array.isArray(argv.files)){
     // if(argv?.o){ vs typeof argv?.o = 'string' idk
-    for(const file of argv.files){
+ 
       const m: string = typeof argv.m =='string' ? argv.m : langModel;
       const e: string = typeof argv.e =='string' ? argv.e : gorg;
       const k: string = typeof argv.k =='string' ? argv.k : groqAPIKEY;
+      const f: string[] = argv.files;
       try{
-        //idk why it needs all these guards when im telling it what the type of the things are
-        //it thinks its unknown but
-        if(typeof argv.l === 'string'){
-          //a check to make sure it works
+        if(typeof argv.o === 'string'){
+          //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
+             if(typeof argv.a === 'boolean'){
+                 appendFile(argv.o, await languageTranslation(f, m, k,e), err =>{
+                   if(err) throw err;
+                 })
+             }
+             else{
+               await Bun.write(argv.o, await languageTranslation(f,  m, k,e));
+             }
+             //bun can't append to files even though they have this
+           }
+           else{
+             //if they're not writing to file
+             console.log(await languageTranslation(f, m,k,e));
+           }
 
-
-          if(typeof argv.o === 'string'){
-         //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
-            if(typeof argv.a === 'boolean'){
-                appendFile(argv.o, await languageTranslation(file, argv.l, m, k,e), err =>{
-                  if(err) throw err;
-                })
-            }
-            else{
-              await Bun.write(argv.o, await languageTranslation(file, argv.l, m, k,e));
-            }
-            //bun can't append to files even though they have this
-          }
-          else{
-            //if they're not writing to file
-            console.log(await languageTranslation(file, argv.l, m,k,e));
-          }
-        }
       }
       catch(err){
-        console.error(`Failed to process file: ${file} \n`, err)
+        console.error(`Failed to process file: ${f} \n`, err)
       }
       
-    }
+    
   }
 })
 .option('k',
