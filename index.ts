@@ -5,7 +5,7 @@ import {appendFile } from 'fs';
 import {OpenAI} from 'openai'; 
 
 const {name, version} = require("./package.json");
-
+//test
 
 const groqAPIKEY:string = process.env?.APIKEY ? process.env.APIKEY : "";
 const requireAPIKey:boolean = !!(groqAPIKEY);
