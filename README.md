@@ -11,8 +11,7 @@ Positionals:
 
 Options:
   -k, --api-key       the apikey of the api endpoint your using
-  [string] [required] [default: "gsk_yHqWYawg7rWAFkdsbtBkWGdyb3FYTGEwCTjVKYsdxAi
-                                                                     asLQUkRZH"]
+  [string] [required] [default: "-----"]
                                                                      
   -e, --end-point     api end point of the llm
                             [string] [default: "https://api.groq.com/openai/v1"]
