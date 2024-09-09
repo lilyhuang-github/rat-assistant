@@ -39,7 +39,7 @@ export async function getGroqChatCompletion(prompt:string, model:string = langMo
   }
 //deal with argument stuff
 
-const languageTranslation = async(things : string, lang : string,  model:string = langModel, apiKey:string =groqAPIKEY, urlThing:string =gorg) =>{
+const languageTranslation = async(things : string, rat : string,  model:string = langModel, apiKey:string =groqAPIKEY, urlThing:string =gorg) =>{
 //read the file of thing
 //shoot off error if not
 //alternative is a rubbery ducky but idk
@@ -48,7 +48,7 @@ const languageTranslation = async(things : string, lang : string,  model:string 
   try{
     const foo = Bun.file(things);
     const text = await foo.text();
-    const prompt:string = `Can you convert this code to ${lang} and also in a pirate language: ${text}`;
+    const prompt:string = `Can you explain in a rat persona the general idea on how to ${rat} but not directly give the answer: ${text}`;
     return await getGroqChatCompletion(prompt, model, apiKey, urlThing);
   }catch(err)
   {console.error(`Error: ${err}`);
@@ -59,7 +59,7 @@ const languageTranslation = async(things : string, lang : string,  model:string 
 }
 // const doThingToEach = (x) => console.log('🎵 Oy oy oy');
 const argv = await yargs(Bun.argv.slice(2)).
-usage('Usage: $0 <command> [...flags] [...args]').
+usage('Usage: $0 <command> [...flags] [...ar  gs]').
 example(`${name} index.js`, 'uses the language model to improve it').
 scriptName(name).
 command('$0 <files...>', 'parses one to many files', (yargs) =>{
@@ -81,25 +81,25 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
       try{
         //idk why it needs all these guards when im telling it what the type of the things are
         //it thinks its unknown but
-        if(typeof argv.l === 'string'){
+        if(typeof argv.r === 'string'){
           //a check to make sure it works
 
 
           if(typeof argv.o === 'string'){
          //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
             if(typeof argv.a === 'boolean'){
-                appendFile(argv.o, await languageTranslation(file, argv.l, m, k,e), err =>{
+                appendFile(argv.o, await languageTranslation(file, argv.r, m, k,e), err =>{
                   if(err) throw err;
                 })
             }
             else{
-              await Bun.write(argv.o, await languageTranslation(file, argv.l, m, k,e));
+              await Bun.write(argv.o, await languageTranslation(file, argv.r, m, k,e));
             }
             //bun can't append to files even though they have this
           }
           else{
             //if they're not writing to file
-            console.log(await languageTranslation(file, argv.l, m,k,e));
+            console.log(await languageTranslation(file, argv.r, m,k,e));
           }
         }
       }
@@ -137,14 +137,20 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
     describe: "language model to use",
     type: "string"
   }
-)
-.option('l', {
-  alias: 'language',
+).
+option('r', {
+  alias: 'rubber-ratty',
   demandOption:true,
-  default: "bash",
-  describe: "language to convert file to",
+  describe: "What you want the ducky to explain",
   type: "string"
 }).
+// option('l', {
+//   alias: 'language',
+//   demandOption:true,
+//   default: "bash",
+//   describe: "language to convert file to",
+//   type: "string"
+// }).
 option('o', {
   alias: 'output',
   describe: "file to output to",
