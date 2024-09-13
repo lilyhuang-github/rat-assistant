@@ -29,19 +29,15 @@ Options:
   
   -h, --help          shows the commands                               [boolean]
 
-# Example
+## Installation
+#Installing Bun
+You can refer to their website [Bun](https://bun.sh/docs/installation) for specifics and more up to date on how to install Bun.
+Npm: npm install -g bun
+Curl: curl -fsSL https://bun.sh/install | bash 
+Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
 
+#Installing the rat-assistant
+Once you've installed Bun and have cloned this repository. You can run bun run setup this cli-app
 
-To install dependencies:
-
-```bash
-bun install
-```
-
-To run:
-
-```bash
-bun run index.ts
-```
 
 This project was created using `bun init` in bun v1.1.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
