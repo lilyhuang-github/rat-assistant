@@ -6,7 +6,7 @@ You give it the file(s) you're working on and a question on how to improve it an
 rat-assistant <command> [...flags] 
 
 
-[](output.gif)
+![](output.gif)
 ### Arguments
 
 Positionals:
