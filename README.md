@@ -3,6 +3,7 @@
 This is a litle command line buddy who'll help you figure out how to improve your code, a rat.
 You give it the file(s) you're working on and a question on how to improve it and it'll tell you what it thinks.
 
+rat-assistant <command> [...flags] 
 
 ### Arguments
 
