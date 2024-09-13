@@ -1,10 +1,10 @@
-### Rat helper
+# Rat helper
 
 This is a litle command line buddy who'll help you figure out how to improve your code, a rat.
 You give it the file(s) you're working on and a question on how to improve it and it'll tell you what it thinks.
 
 
-# Arguments
+### Arguments
 
 Positionals:
   files  path to file that it will parse                                [string]
@@ -29,8 +29,8 @@ Options:
   
   -h, --help          shows the commands                               [boolean]
 
-## Installation
-# Installing Bun
+# Installation
+## Installing Bun
 You can refer to their website [Bun](https://bun.sh/docs/installation) for specifics and more up to date on how to install Bun.
 
 Npm: npm install -g bun
@@ -39,7 +39,7 @@ Curl: curl -fsSL https://bun.sh/install | bash
 
 Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
 
-# Installing the rat-assistant
+## Installing the rat-assistant
 
 Once you've installed Bun and have cloned this repository. You can run: bun run setup 
 
