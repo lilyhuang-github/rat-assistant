@@ -30,13 +30,13 @@ Options:
   -h, --help          shows the commands                               [boolean]
 
 ## Installation
-#Installing Bun
+# Installing Bun
 You can refer to their website [Bun](https://bun.sh/docs/installation) for specifics and more up to date on how to install Bun.
 Npm: npm install -g bun
 Curl: curl -fsSL https://bun.sh/install | bash 
 Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
 
-#Installing the rat-assistant
+# Installing the rat-assistant
 Once you've installed Bun and have cloned this repository. You can run bun run setup this cli-app
 
 
