@@ -41,7 +41,9 @@ Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
 
 ## Installing the rat-assistant
 
-Once you've installed Bun and have cloned this repository. You can run: bun run setup 
+Once you've installed Bun and have cloned this repository. 
+
+You can run: **bun run setup** 
 
 This will install the packages and create a link so that you may run it specifying the exact folder.
 
