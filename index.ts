@@ -1,6 +1,6 @@
+#!/usr/bin/env bun
 
-
-import yargs, { type Arguments } from "yargs";
+import yargs from "yargs";
 import {appendFile } from 'fs';
 import {OpenAI} from 'openai'; 
 
@@ -89,7 +89,8 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
          //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
             if(typeof argv.a === 'boolean'){
                 appendFile(argv.o, await languageTranslation(file, argv.r, m, k,e), err =>{
-                  if(err) throw err;
+                  if(err)
+                    throw err;
                 })
             }
             else{
@@ -128,7 +129,6 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
     type: "string"
   }
 )
-
 .option('m',
   {
     alias: 'model',
@@ -144,13 +144,6 @@ option('r', {
   describe: "What you want the ducky to explain",
   type: "string"
 }).
-// option('l', {
-//   alias: 'language',
-//   demandOption:true,
-//   default: "bash",
-//   describe: "language to convert file to",
-//   type: "string"
-// }).
 option('o', {
   alias: 'output',
   describe: "file to output to",
@@ -159,7 +152,7 @@ option('o', {
 option('a', {
   alias: 'append',
   default: "false",
-  describe: "whether it destructively writes to file or appends ot",
+  describe: "whether it destructively writes to file or appends to",
   type: "boolean"
 }).
 version('v', 'version showing', version).

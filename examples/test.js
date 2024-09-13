@@ -1,0 +1,1 @@
+function(){var _0x3b67=["console.log(\"WAH\"),"];var _0x3c93=["for(const x of y){console.log(x + 1);}"];var y=[1,2,3,4];eval(_0x3b67[0]+";"+_0x3c93[0].replace(/(\w+)\(([^)]+\))/g,function(matched){return matched.replace(/(\w+)/g,function(matched){return matched.replace(/^[a-z]$/gi,function(matched){return matched.toUpperCase();});});}()

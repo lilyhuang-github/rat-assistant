@@ -1,8 +1,14 @@
 {
-  "name": "toast",
+  "name": "rat-assistant",
   "module": "index.ts",
   "type": "module",
   "version": "0.1",
+  "bin":{
+    "rat-assistant": "./index.ts"
+  },
+  "scripts": {
+    "build":"bun run build"
+  },
   "devDependencies": {
     "@types/bun": "latest",
     "@types/yargs": "^17.0.33"
