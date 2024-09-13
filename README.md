@@ -1,10 +1,11 @@
-### Rat helper
+# Rat helper
 
 This is a litle command line buddy who'll help you figure out how to improve your code, a rat.
 You give it the file(s) you're working on and a question on how to improve it and it'll tell you what it thinks.
 
+rat-assistant <command> [...flags] 
 
-# Arguments
+### Arguments
 
 Positionals:
   files  path to file that it will parse                                [string]
@@ -29,19 +30,23 @@ Options:
   
   -h, --help          shows the commands                               [boolean]
 
-# Example
+# Installation
+## Installing Bun
+You can refer to their website [Bun](https://bun.sh/docs/installation) for specifics and more up to date on how to install Bun.
 
+Npm: npm install -g bun
 
-To install dependencies:
+Curl: curl -fsSL https://bun.sh/install | bash 
 
-```bash
-bun install
-```
+Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
 
-To run:
+## Installing the rat-assistant
 
-```bash
-bun run index.ts
-```
+Once you've installed Bun and have cloned this repository. 
+
+You can run: **bun run setup** 
+
+This will install the packages and create a link so that you may run it specifying the exact folder.
+
 
 This project was created using `bun init` in bun v1.1.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
