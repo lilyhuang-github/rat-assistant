@@ -7,7 +7,10 @@
     "rat-assistant": "./index.ts"
   },
   "scripts": {
-    "build":"bun run build"
+    "setup":"bun install && bun link && bun link rat-assistant",
+    "setup-npm":"npm install && npm link && npm link rat-assistant",
+    "destroy":"bun unlink",
+    "destroy-npm": "npm unlink"
   },
   "devDependencies": {
     "@types/bun": "latest",
