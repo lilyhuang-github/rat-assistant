@@ -5,6 +5,8 @@ You give it the file(s) you're working on and a question on how to improve it an
 
 rat-assistant <command> [...flags] 
 
+
+![](output.gif)
 ### Arguments
 
 Positionals:
@@ -50,3 +52,5 @@ This will install the packages and create a link so that you may run it specifyi
 
 
 This project was created using `bun init` in bun v1.1.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+
+![wasdadas](https://github.com/user-attachments/assets/98a73b6e-4094-49d7-8b03-9a21d9fbadfe)
