@@ -27,6 +27,8 @@ Options:
   
   -a, --append        whether it destructively writes to file or appends ot
                                                     [boolean] [default: "false"]
+   
+  -t, --token-usage   provides token usage information at the end of output
                                                     
   -v, --version       version showing                                  [boolean]
   
