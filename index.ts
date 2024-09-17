@@ -5,6 +5,7 @@
 import yargs from "yargs";
 import {appendFile } from 'fs';
 import {OpenAI} from 'openai'; 
+import { stderr } from "bun";
 
 const {name, version} = require("./package.json");
 //test
@@ -36,8 +37,10 @@ export async function getGroqChatCompletion(prompt:string, model:string = langMo
   
 }
   )
-
-    return thing.choices[0]?.message?.content;
+    return {
+      content: thing.choices[0]?.message?.content,
+      tokenInfo: thing.usage
+    };
   }
 //deal with argument stuff
 
@@ -86,26 +89,34 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
         if(typeof argv.r === 'string'){
           //a check to make sure it works
 
-
+          const {content, tokenInfo} = await languageTranslation(file, argv.r, m, k,e);
+         
           if(typeof argv.o === 'string'){
          //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
             if(typeof argv.a === 'boolean'){
-                appendFile(argv.o, await languageTranslation(file, argv.r, m, k,e), err =>{
+                appendFile(argv.o, content, err =>{
                   if(err)
                     throw err;
                 })
             }
             else{
-              await Bun.write(argv.o, await languageTranslation(file, argv.r, m, k,e));
+              await Bun.write(argv.o, content);
             }
             //bun can't append to files even though they have this
           }
           else{
             //if they're not writing to file
-            console.log(await languageTranslation(file, argv.r, m,k,e));
+            console.log(content);
           }
+
+          if(typeof argv.t === 'boolean'){
+
+            await Bun.write(Bun.stderr, "\nToken Usage Information:\n" + "\n- Tokens Used for Prompt: " + tokenInfo.prompt_tokens + "\n- Response Tokens: " + tokenInfo.completion_tokens + "\n- Total Tokens: " + tokenInfo.total_tokens);
+           
         }
+        
       }
+    }
       catch(err){
         console.error(`Failed to process file: ${file} \n`, err)
       }
@@ -155,6 +166,12 @@ option('a', {
   alias: 'append',
   default: "false",
   describe: "whether it destructively writes to file or appends to",
+  type: "boolean"
+}).
+option('t', {
+  alias: 'token-usage',
+  default: "false",
+  describe: "provides the token usage information",
   type: "boolean"
 }).
 version('v', 'version showing', version).
