@@ -111,57 +111,62 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
   if(Array.isArray(argv.files)){
     // if(argv?.o){ vs typeof argv?.o = 'string' idk
     for(const file of argv.files){
-      const m: string = typeof argv.m =='string' ? argv.m : langModel;
+      // const m: string = typeof argv.m =='string' ? argv.m : langModel;
+      const m: string = Array.isArray(argv.m) ? argv.m.join(" ") : langModel;
       const e: string = typeof argv.e =='string' ? argv.e : gorg;
       const k: string = typeof argv.k =='string' ? argv.k : groqAPIKEY;
       const s: boolean = typeof argv.s == 'boolean' ? argv.s : false;
-      // console.log(s)
-      try{
-        //idk why it needs all these guards when im telling it what the type of the things are
-        //it thinks its unknown but
-        if(typeof argv.r === 'string'){
-          //a check to make sure it works
-
-          const {content, tokenInfo} = await languageTranslation(file, argv.r, m, k,e, s);
-         
-          if(typeof argv.o === 'string'){
-         //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
-            if(typeof argv.a === 'boolean'){
-                appendFile(argv.o, content, err =>{
-                  if(err)
-                    throw err;
-                })
+ 
+      for(const model of m.split(" ")){
+        try{
+          //idk why it needs all these guards when im telling it what the type of the things are
+          //it thinks its unknown but
+          if(typeof argv.r === 'string'){
+            //a check to make sure it works
+            
+            const {content, tokenInfo} = await languageTranslation(file, argv.r, model, k,e,s );
+          
+            if(typeof argv.o === 'string'){
+          //a check but also it kind of checks if its exists or not cause otherwise it's unknown 
+              if(typeof argv.a === 'boolean'){
+                  appendFile(model + "_" + argv.o, content, err =>{
+                    if(err)
+                      throw err;
+                  })
+              }
+              else{
+                await Bun.write(model + "_" + argv.o, content);
+              }
+              //bun can't append to files even though they have this
             }
             else{
-              await Bun.write(argv.o, content);
+              //if they're not writing to file
+               if(!s){
+              console.log(model + ": ");
+              console.log(content);
+               }
+              
               process.exit(0)
-
+            
             }
-            //bun can't append to files even though they have this
-          }
-          else{
-            //if they're not writing to file
-            if(!s){
-            console.log(content);
-            }
+
+
+            if(typeof argv.t === 'boolean'){
+
+              await Bun.write(Bun.stderr, "\nToken Usage Information:\n" + "\n- Tokens Used for Prompt: " + tokenInfo.prompt_tokens + "\n- Response Tokens: " + tokenInfo.completion_tokens + "\n- Total Tokens: " + tokenInfo.total_tokens);
             process.exit(0)
-
           }
+          
 
-          if(typeof argv.t === 'boolean'){
-
-            await Bun.write(Bun.stderr, "\nToken Usage Information:\n" + "\n- Tokens Used for Prompt: " + tokenInfo.prompt_tokens + "\n- Response Tokens: " + tokenInfo.completion_tokens + "\n- Total Tokens: " + tokenInfo.total_tokens);
-            process.exit(0)
 
         }
-        
       }
+        catch(err){
+          console.error(`Failed to process file: ${file} \n`, err)
+          process.exit(1)
+        }
     }
-      catch(err){
-        console.error(`Failed to process file: ${file} \n`, err);
-        process.exit(1)
-      }
-      
+
     }
   }
 })
@@ -189,7 +194,7 @@ command('$0 <files...>', 'parses one to many files', (yargs) =>{
     demandOption:false,
     default: langModel,
     describe: "language model to use",
-    type: "string"
+    type: "array"
   }
 ).
 option('r', {
