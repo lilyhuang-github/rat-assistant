@@ -9,7 +9,7 @@ import { stderr } from "bun";
 
 const {name, version} = require("./package.json");
 //test
-
+// test
 const groqAPIKEY:string = process.env?.APIKEY ? process.env.APIKEY : "";
 const requireAPIKey:boolean = !!(groqAPIKEY);
 const gorg:string = "https://api.groq.com/openai/v1";
