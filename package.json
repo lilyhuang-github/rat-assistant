@@ -3,14 +3,20 @@
   "module": "index.ts",
   "type": "module",
   "version": "0.1",
-  "bin":{
+  "bin": {
     "rat-assistant": "./index.ts"
   },
   "scripts": {
-    "setup":"bun install && bun link && bun link rat-assistant",
-    "setup-npm":"npm install && npm link && npm link rat-assistant",
-    "destroy":"bun unlink",
+    "setup": "bun install && bun link && bun link rat-assistant",
+    "setup-npm": "npm install && npm link && npm link rat-assistant",
+    "destroy": "bun unlink",
     "destroy-npm": "npm unlink"
+  },
+  "dependencies": {
+    "groq-sdk": "^0.7.0",
+    "openai": "^4.58.1",
+    "yargs": "^17.7.2",
+    "toml": "^3.0.0"
   },
   "devDependencies": {
     "@types/bun": "latest",
@@ -18,10 +24,5 @@
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
-  },
-  "dependencies": {
-    "groq-sdk": "^0.7.0",
-    "openai": "^4.58.1",
-    "yargs": "^17.7.2"
   }
 }
