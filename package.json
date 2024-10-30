@@ -3,24 +3,34 @@
   "module": "index.ts",
   "type": "module",
   "version": "0.1",
-  "bin":{
+  "bin": {
     "rat-assistant": "./index.ts"
   },
   "scripts": {
-    "setup":"bun install && bun link && bun link rat-assistant",
-    "setup-npm":"npm install && npm link && npm link rat-assistant",
-    "destroy":"bun unlink",
-    "destroy-npm": "npm unlink"
+    "setup": "bun install && bun link && bun link rat-assistant",
+    "setup-npm": "npm install && npm link && npm link rat-assistant",
+    "destroy": "bun unlink",
+    "destroy-npm": "npm unlink",
+    "format": "bun prettier . --write",
+    "format-npm": "npm prettier . --write",
+    "lint": "npx eslint index.ts",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@eslint/js": "^9.13.0",
     "@types/bun": "latest",
-    "@types/yargs": "^17.0.33"
+    "@types/yargs": "^17.0.33",
+    "globals": "^15.11.0",
+    "prettier": "3.3.3",
+    "typescript-eslint": "^8.12.2"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "eslint": "^9.13.0",
     "groq-sdk": "^0.7.0",
+    "husky": "^9.1.6",
     "openai": "^4.58.1",
     "yargs": "^17.7.2"
   }
