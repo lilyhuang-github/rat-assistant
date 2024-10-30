@@ -3,59 +3,33 @@
 This is a litle command line buddy who'll help you figure out how to improve your code, a rat.
 You give it the file(s) you're working on and a question on how to improve it and it'll tell you what it thinks.
 
-rat-assistant <command> [...flags] 
-
+rat-assistant <command> [...flags]
 
 ![](output.gif)
+
 ### Arguments
 
 Positionals:
-  files  path to file that it will parse                                [string]
+files path to file that it will parse [string]
 
 Options:
-  -k, --api-key       the apikey of the api endpoint your using
-  [string] [required] [default: "-----"]
-                                                                     
-  -e, --end-point     api end point of the llm
-                            [string] [default: "https://api.groq.com/openai/v1"]
-                            
-  -m, --model         language model to use [string] [default: "llama3-8b-8192"]
-  
-  -r, --rubber-ratty  What you want the ducky to explain     [string] [required]
-  
-  -o, --output        file to output to                                 [string]
-  
-  -a, --append        whether it destructively writes to file or appends ot
-                                                    [boolean] [default: "false"]
-   
-  -t, --token-usage   provides token usage information at the end of output
-                                                    
-  -v, --version       version showing                                  [boolean]
-  
-  -h, --help          shows the commands                               [boolean]
+-k, --api-key the apikey of the api endpoint your using
+[string] [required] [default: "-----"]
 
-# Installation
-## Installing Bun
-You can refer to their website [Bun](https://bun.sh/docs/installation) for specifics and more up to date on how to install Bun.
+-e, --end-point api end point of the llm
+[string] [default: "https://api.groq.com/openai/v1"]
 
-Npm: npm install -g bun
+-m, --model language model to use [string] [default: "llama3-8b-8192"]
 
-Curl: curl -fsSL https://bun.sh/install | bash 
+-r, --rubber-ratty What you want the ducky to explain [string] [required]
 
-Powershell/CMD: powershell -c "irm bun.sh/install.ps1|iex"
+-o, --output file to output to [string]
 
-## Installing the rat-assistant
+-a, --append whether it destructively writes to file or appends ot
+[boolean] [default: "false"]
 
-Once you've installed Bun and have cloned this repository. 
+-t, --token-usage provides token usage information at the end of output
 
-You can run: **bun run setup** 
+-v, --version version showing [boolean]
 
-This will install the packages and create a link so that you may run it specifying the exact folder.
-
-
-This project was created using `bun init` in bun v1.1.26. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-
-
-### Create an env file
-You can also create an .env file with APIKEY=(Your api key here) so you don't have to use the api key flag the whole time
-![wasdadas](https://github.com/user-attachments/assets/98a73b6e-4094-49d7-8b03-9a21d9fbadfe)
+-h, --help shows the commands [boolean]
