@@ -174,6 +174,11 @@ For formatting, Prettier is used. You can use: bun run format which will format 
 
 For linting, Eslint is used. You can use: bun run lint which will find issues with the CLI.
 
+### Testing
+
+You can run bun test to run all the tests.
+The tests are located in index.test.ts
+
 ### Improving The Documentation
 
 <!-- TODO

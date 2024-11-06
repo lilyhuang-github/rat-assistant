@@ -6,6 +6,11 @@
   "bin": {
     "rat-assistant": "./index.ts"
   },
+  "eslintConfig": {
+    "rules": {
+      "@typescript-eslint/no-unused-vars": "off"
+    }
+  },
   "scripts": {
     "setup": "bun install && bun link && bun link rat-assistant",
     "setup-npm": "npm install && npm link && npm link rat-assistant",
@@ -14,7 +19,8 @@
     "format": "bun prettier . --write",
     "format-npm": "npm prettier . --write",
     "lint": "npx eslint index.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest"
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
@@ -22,7 +28,8 @@
     "@types/yargs": "^17.0.33",
     "globals": "^15.11.0",
     "prettier": "3.3.3",
-    "typescript-eslint": "^8.12.2"
+    "typescript-eslint": "^8.12.2",
+    "vitest": "^2.1.4"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
@@ -31,6 +38,7 @@
     "eslint": "^9.13.0",
     "groq-sdk": "^0.7.0",
     "husky": "^9.1.6",
+    "nock": "^13.5.5",
     "openai": "^4.58.1",
     "yargs": "^17.7.2"
   }
