@@ -1,7 +1,7 @@
 #!/usr/bin/env bun
 
 //test
-
+//test
 import yargs from "yargs";
 import { appendFile } from "fs";
 import { OpenAI } from "openai";
