@@ -66,10 +66,6 @@ export class RatChat {
 
   public async ratCompletionty(usageFile: string, model: string) {
     try {
-      return {
-        choices: [{ message: { content: "DESTROED" } }],
-        usage: { prompt_tokens: 130, completion_tokens: 210, total_tokens: 320 }
-      }
       // console.log(this.client);
       const reader = Bun.file(usageFile);
       const text = await reader.text();
