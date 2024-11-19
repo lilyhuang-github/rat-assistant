@@ -2,7 +2,7 @@
   "name": "rat-assistant",
   "module": "index.ts",
   "type": "module",
-  "version": "0.1",
+  "version": "1.0",
   "bin": {
     "rat-assistant": "./index.ts"
   },
