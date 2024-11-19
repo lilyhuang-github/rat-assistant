@@ -7,6 +7,29 @@ rat-assistant <command> [...flags]
 
 ![](output.gif)
 
+### Installation
+
+You can use npm/pnpm or bun to install this.
+
+## NPM
+
+Install: npm i rat-assistant
+This will install it
+
+You can make it accessibile globally with:
+npm run setup-npm
+which would let you access it anywhere
+and then
+npm run destroy-npm
+to get rid of it globally
+
+## Bun
+
+Install: bun add rat-assistant
+You can make it accessible globally with:
+bun run setup
+or install it bun install -g rat-assistant
+
 ### Arguments
 
 Positionals:
